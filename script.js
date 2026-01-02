@@ -105,8 +105,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-document.addEventListener('click', (e)=>{
-    
+canvas.addEventListener('click', (e)=>{
+    gnca.damage([9, 8, 0], [0, 0, 1], 1)
 })
 
 // -------------------- MAIN LOOP --------------------

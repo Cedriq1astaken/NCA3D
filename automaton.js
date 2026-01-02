@@ -62,26 +62,52 @@ class NCA {
         return this.state;
     }
 
-    damage(center, radius) {
-        const [cz, cy, cx] = center;
+    damage(start, direction, radius = 2) {
+        const [sx, sy, sz] = start;
+        let [vx, vy, vz] = direction;
 
-        for (let z = 0; z < this.size; z++) {
-            for (let y = 0; y < this.size; y++) {
-                for (let x = 0; x < this.size; x++) {
-                    const dz = z - cz;
-                    const dy = y - cy;
-                    const dx = x - cx;
+        const mag = Math.hypot(vx, vy, vz) || 1;
+        vx /= mag;
+        vy /= mag;
+        vz /= mag;
 
-                    if (dz*dz + dy*dy + dx*dx <= radius * radius) {
-                        const idx = this._getIndex(z, y, x);
-                        for (let c = 0; c < this.channels; c++) {
-                            this.state[idx + c] = 0;
+
+        let t = 0;
+
+        while (true) {
+            const cx = sx + vx * t;
+            const cy = sy + vy * t;
+            const cz = sz + vz * t;
+
+            if (
+                cx < 0 || cy < 0 || cz < 0 ||
+                cx >= this.size || cy >=  this.size || cz >=  this.size
+            ) break;
+
+            for (let x = Math.floor(cx - radius); x <= Math.ceil(cx + radius); x++) {
+                for (let y = Math.floor(cy - radius); y <= Math.ceil(cy + radius); y++) {
+                    for (let z = Math.floor(cz - radius); z <= Math.ceil(cz + radius); z++) {
+
+                        if (
+                            x < 0 || y < 0 || z < 0 ||
+                            x >=  this.size || y >=  this.size || z >=  this.size
+                        ) continue;
+
+                        const d = Math.hypot(x - cx, y - cy, z - cz);
+                        if (d <= radius) {
+                            let idx = this._getIndex(z, y, x) 
+                            for (let i =0; i < 4; i++)
+                                this.state[idx + i] = 0.0 ;
                         }
                     }
                 }
             }
+
+            t += 1; 
         }
     }
+
+
 
     applyAliveMask(state) {
         const aliveThreshold = 0.05; 
