@@ -31,6 +31,7 @@ class NCA {
         return state
     }
 
+
     _getIndex(z, y, x) {
         return  this.channels * (z * this.size * this.size + y * this.size + x);
     }
@@ -105,6 +106,23 @@ class NCA {
 
             t += 1; 
         }
+    }
+
+    grow(x, y, z){
+
+        for(let i = 0; i < 2; i++){
+            for(let j = 0; j <  2; j++){
+                for(let k = 0; k < 2; k++){
+                    for (let c = 3; c < this.channels; c++){
+                        let ci = Math.min(Math.max(x + i, 0), 15);
+                        let cj = Math.min(Math.max(y + j, 0), 15);
+                        let ck = Math.min(Math.max(z + k, 0), 15);
+                        this.state[this._getIndex(ci, cj, ck) + c] = 1.0
+                    }
+                }
+            }
+        }
+
     }
 
 
