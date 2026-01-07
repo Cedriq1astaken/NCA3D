@@ -1,6 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pixelify+Sans:wght@400..700&display=swap');
+
 body{
     margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
+
+
+header{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    border: solid #90CF8E 4px;
+    background-color: #90CF8E;
+    gap: 5px;
+    box-sizing: border-box;
+    color: #72dc6f;
+    font-size: 20px;
+    font-family: "Pixelify Sans", sans-serif;
+}
+#fps{
+    display: flex;
+    background-color: #90CF8E;
+    color: #DAF2D7;
+    width: 100px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#step{
+    display: flex;
+    background-color: #90CF8E;
+    color: #DAF2D7;
+    width: 150px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.subparts{
+    display: flex;
+    background-color: #DAF2D7;
+    width: 100px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.subparts:hover{
+    background-color: #90CF8E;
+    color: #DAF2D7;
+    cursor: pointer;
+}
+
+
 
 #canvas{
     width: 100%;
