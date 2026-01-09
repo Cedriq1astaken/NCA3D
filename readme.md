@@ -19,7 +19,7 @@ The cellular automata uses local rules where each cell observes its neighbors an
 *Demonstration of the system's ability to regenerate after partial destruction*
 
 ### Interactive 3D View
-![3D Visualization](screenshots/3d_view.gif)
+![3D Visualization](screenshots/3dview.gif)
 *Interactive Three.js visualization showing the cellular automata in real-time*
 
 ## Features
